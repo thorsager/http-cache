@@ -1,8 +1,8 @@
 package httpCache
 
 import (
-	"testing"
 	"io/ioutil"
+	"testing"
 )
 
 func TestHybridWriter_Write(t *testing.T) {
@@ -15,16 +15,15 @@ func TestHybridWriter_Write(t *testing.T) {
 	}
 	reader, err := hr.ReadCloser()
 	if err != nil {
-		t.Errorf("Unable to get Reader: %v",err)
+		t.Errorf("Unable to get Reader: %v", err)
 	}
 	defer reader.Close()
 
-	d,err :=ioutil.ReadAll(reader)
+	d, err := ioutil.ReadAll(reader)
 	if err != nil {
-		t.Errorf("Reader Should not Fail: %v",err)
+		t.Errorf("Reader Should not Fail: %v", err)
 	}
 	if len(d) != len(chunk)*10 {
-		t.Errorf("Size Missmatch %d vs %d",len(d),len(chunk)*10)
+		t.Errorf("Size Missmatch %d vs %d", len(d), len(chunk)*10)
 	}
 }
-
